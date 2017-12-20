@@ -1,0 +1,100 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>integration</groupId>
+  <artifactId>integration</artifactId>
+  <packaging>war</packaging>
+  <version>1.0.0</version>
+  <name>integration Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>  
+      <!-- #定义变量，常用于定义框架、jar包等的版本号和项目相关的名称 -->
+      <java.version>1.8</java.version>
+      <spring.version>5.0.1.RELEASE</spring.version>
+      <jetty.version>9.4.7.v20170914</jetty.version> 
+      
+      
+      <!-- 文件编码设置 -->
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties> 
+  
+  <dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+    		<groupId>javax.servlet</groupId>
+    		<artifactId>javax.servlet-api</artifactId>
+    		<version>3.0.1</version>
+    		<scope>provided</scope>
+		</dependency>
+		<dependency>
+    		<groupId>jstl</groupId>
+    		<artifactId>jstl</artifactId>
+    		<version>1.2</version>
+		</dependency>
+	</dependencies>
+  <build>
+    <finalName>integration</finalName>
+    <pluginManagement>
+      <plugins>
+      	<!-- 指定编译jdk为1.8 -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.7.0</version>
+            <configuration>
+                <target>${java.version}</target>
+                <resource>${java.version}</resource>
+            </configuration>
+        </plugin>
+        
+        <!-- Tomcat插件的配置 -->
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat6-maven-plugin</artifactId>
+          <version>2.2</version>
+          <configuration>
+          	<url>http://localhost:8080/manager/text</url>
+          	<server>tomcat</server>
+          	<username>admin</username>
+          	<password>admin123</password>
+          </configuration>
+        </plugin>
+        
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>2.2</version>
+          <configuration>
+          	<url>http://localhost:8080/manager/text</url>
+          	<server>tomcat</server>
+          	<username>admin</username>
+          	<password>admin123</password>
+          </configuration>
+        </plugin>
+        
+        <!-- Jetty 插件的配置 -->
+        <plugin>
+        	<groupId>org.eclipse.jetty</groupId>
+		    <artifactId>jetty-maven-plugin</artifactId>
+		    <version>${jetty.version}</version>
+		    <configuration>
+		    	<scanIntervalSeconds>10</scanIntervalSeconds>
+			    <webApp>
+			      <contextPath>/integration</contextPath>
+			    </webApp>
+	            <httpConnector>
+	                <port>8080</port>
+	            </httpConnector>
+		  </configuration>
+        </plugin>
+        
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
