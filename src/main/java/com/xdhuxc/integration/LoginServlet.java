@@ -15,8 +15,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doPost(request, response);
-		//request.getRequestDispatcher("/index.jsp").forward(request, response);
+		
 		response.getWriter().println("It is doGet method");
 	}
 	
@@ -35,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 		response.getWriter().println("<title>登录成功</title>");
 		response.getWriter().println("</head>");
 		response.getWriter().println("<body>");
-		response.getWriter().println("Welcome " + username + " using our website");
+		response.getWriter().println("Welcome " + username + " use our website");
 		response.getWriter().println("<br>");
 		response.getWriter().println("Your password is " + password);
 		response.getWriter().println("<br>");

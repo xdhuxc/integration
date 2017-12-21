@@ -12,7 +12,7 @@
 			<input style="width:80%" type="text" name="username"/>
 			
 			<label style="width:15%;margin-right:6.5%">Password</label>
-			<input style="width:80%" type="text" name="username"/>
+			<input style="width:80%" type="text" name="password"/>
 			
 			<label style="width:15%;margin-right:6.5%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 			<input style="width:80%" type="submit" name="登录"/>
