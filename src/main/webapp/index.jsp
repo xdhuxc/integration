@@ -1,15 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 	<head>
 		<title>Sign In</title>
 	</head>
-	<body>
-		<form method="post" action="<c:url value="${pageContext.request.contextPath}/LoginServlet"/>">
-			User Name : <input type="text" name="username"/> <br/>
-			Password :  <input type="text" name="password"/> <br/>
-			            <input type="submit" value="Sign In"/>
+	<body style="width:100%">
+	
+	
+		<form method="post" action="LoginServlet" style="margin:0 auto;width:60%;margin-top:20%">
+			<label style="width:15%;margin-right:5%">User Name</label>
+			<input style="width:80%" type="text" name="username"/>
+			
+			<label style="width:15%;margin-right:6.5%">Password</label>
+			<input style="width:80%" type="text" name="username"/>
+			
+			<label style="width:15%;margin-right:6.5%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<input style="width:80%" type="submit" name="登录"/>
 		</form>
+		
 	</body>
 </html>

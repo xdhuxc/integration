@@ -86,7 +86,7 @@
 		    <configuration>
 		    	<scanIntervalSeconds>10</scanIntervalSeconds>
 			    <webApp>
-			      <contextPath>/integration</contextPath>
+			      <contextPath>/</contextPath>
 			    </webApp>
 	            <httpConnector>
 	                <port>8080</port>
