@@ -15,36 +15,47 @@ public class EndPoint {
     public EndPoint(String endpointName) throws IOException, TimeoutException{
          this.endPointName = endpointName;
 		
-         //Create a connection factory
-         ConnectionFactory factory = new ConnectionFactory();
-	     
-         
-         //hostname of your rabbitmq server
-         factory.setVirtualHost("/");
-         factory.setHost("172.20.1.161");
-         factory.setPort(5672);
-		 factory.setUsername("admin");
-		 factory.setPassword("admin123");
+         //创建ConnectionFactory
+         ConnectionFactory connectionFactory = new ConnectionFactory();
+
+        /**
+         * 设置RabbitMQ的基本信息。
+         */
+        /**
+         * RabbitMQ 的权限管理。
+         * 在 RabbitMQ 中可以虚拟消息服务器 VirtualHost，每个VirtualHost相当于一个相对独立的RabbitMQ服务器，
+         * 每个 VirtualHost 之间是相互隔离的，exchange、queue、message之间不能互通。
+         */
+        connectionFactory.setVirtualHost("/");
+        connectionFactory.setHost("172.20.1.161");
+        connectionFactory.setPort(5672);
+        connectionFactory.setUsername("admin");
+        connectionFactory.setPassword("admin123");
 		 
-         //getting a connection
-         connection = factory.newConnection();
+         //获取Connection对象
+         connection = connectionFactory.newConnection();
 	    
-         //creating a channel
+         //创建Channel对象
          channel = connection.createChannel();
-	    
-         //declaring a queue for this channel. If queue does not exist,
-         //it will be created on the server.
+
+        /**
+         * 为此channel声明一个queue，如果queue不存在，则会创建一个。
+         */
          channel.queueDeclare(endpointName, false, false, false, null);
     }
 	
 	
     /**
-     * 关闭channel和connection。并非必须，因为隐含是自动调用的。 
+     *  关闭channel 和 connection。并非必须，因为隐含是自动调用的。
      * @throws IOException
      * @throws TimeoutException 
      */
      public void close() throws IOException, TimeoutException{
-         this.channel.close();
-         this.connection.close();
+         if (null != channel) {
+             this.channel.close();
+         }
+         if (null != connection) {
+            this.connection.close();
+         }
      }
 }

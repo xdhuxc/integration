@@ -14,10 +14,12 @@ import org.csource.fastdfs.TrackerClient;
 import org.csource.fastdfs.TrackerServer;
 
 /**
+ * 测试FastDFS能否使用
  * @author Administrator
  *
  */
 public class FastDFSClient {
+
 	/**
      * 上传文件
      */
@@ -58,7 +60,19 @@ public class FastDFSClient {
         trackerServer.close();
         return files;
     }
-    private static byte[] getFileBuffer(InputStream inStream, long fileLength) throws IOException {
+
+    /**
+     * 删除文件等其他操作
+     */
+
+    /**
+     * 将文件内容读入缓存
+     * @param inputStream
+     * @param fileLength
+     * @return
+     * @throws IOException
+     */
+    private static byte[] getFileBuffer(InputStream inputStream, long fileLength) throws IOException {
 
         byte[] buffer = new byte[256 * 1024];
         byte[] fileBuffer = new byte[(int) fileLength];
@@ -66,7 +80,7 @@ public class FastDFSClient {
         int count = 0;
         int length = 0;
 
-        while ((length = inStream.read(buffer)) != -1) {
+        while ((length = inputStream.read(buffer)) != -1) {
             for (int i = 0; i < length; ++i) {
                 fileBuffer[count + i] = buffer[i];
             }
@@ -76,13 +90,14 @@ public class FastDFSClient {
     }
     
     public static void main(String[] args) {
-    	//加载配置文件的方式
+    	//加载配置文件
         String configFileName = "D:\\EclipseProject\\integration\\src\\main\\resource\\fdfs_client.conf";
         try {
             ClientGlobal.init(configFileName);
         }catch(Exception e){
             e.printStackTrace();
         }
+
         File file = new File("C:\\Users\\Administrator\\Desktop\\abc.txt");
         //返回储存路径:group1 M00/00/00/wKhuW1Vmj6KAZ09pAAC9przUxEk788.jpg
         String[] files;
@@ -93,5 +108,6 @@ public class FastDFSClient {
 			e.printStackTrace();
 		}
 	}
+
 }
 

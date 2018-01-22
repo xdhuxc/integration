@@ -19,7 +19,7 @@ public class QueueConsumer extends EndPoint implements Runnable, Consumer {
 	
 	public void run() {
 		try {
-			//start consuming messages. Auto acknowledge messages.
+			//开始消费消息，自动识别消息。
 			channel.basicConsume(endPointName, true,this);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -27,7 +27,7 @@ public class QueueConsumer extends EndPoint implements Runnable, Consumer {
 	}
 	
 	/**
-	 * Called when consumer is registered.
+	 * 当消费者注册时被调用。
 	 */
 	public void handleConsumeOk(String consumerTag) {
 		System.out.println("Consumer "+consumerTag +" registered");		
@@ -37,8 +37,9 @@ public class QueueConsumer extends EndPoint implements Runnable, Consumer {
 	public void handleCancelOk(String consumerTag) {}
 	public void handleRecoverOk(String consumerTag) {}
 	public void handleShutdownSignal(String consumerTag, ShutdownSignalException arg1) {}
+
     /**
-     *  Called when new message is available.
+     *  当新消息产生时被调用。
      */
 	public void handleDelivery(String consumerTag, Envelope env, com.rabbitmq.client.AMQP.BasicProperties props, byte[] body)
 			throws IOException {

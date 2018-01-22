@@ -8,6 +8,7 @@ import org.apache.commons.lang.SerializationUtils;
 
 
 public class Producer extends EndPoint {
+
 	public Producer(String endPointName) throws IOException, TimeoutException{
 		super(endPointName);
 	}

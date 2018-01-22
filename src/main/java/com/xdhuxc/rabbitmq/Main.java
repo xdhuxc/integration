@@ -3,7 +3,8 @@ package com.xdhuxc.rabbitmq;
 import java.util.HashMap;
 
 public class Main {
-public Main() throws Exception {
+
+	public Main() throws Exception {
 		
 		QueueConsumer consumer = new QueueConsumer("queue");
 		Thread consumerThread = new Thread(consumer);
