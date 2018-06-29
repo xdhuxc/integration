@@ -21,8 +21,10 @@
         <tomcat6-maven-plugin.version>2.2</tomcat6-maven-plugin.version>
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
         <tomcat7-maven-plugin.version>2.2</tomcat7-maven-plugin.version>
-        <jetcd-core.version>0.0.1</jetcd-core.version>
 
+        <marathon-client.version>0.6.0</marathon-client.version>
+
+        <!--以下这组是可用的 log4j 和 slf4j 配置，无冲突及缺包情况-->
         <slf4j-log4j12.version>1.7.25</slf4j-log4j12.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <log4j.version>1.2.17</log4j.version>
@@ -127,6 +129,14 @@
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j-simple.version}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.mesosphere/marathon-client -->
+        <dependency>
+            <groupId>com.mesosphere</groupId>
+            <artifactId>marathon-client</artifactId>
+            <version>${marathon-client.version}</version>
+        </dependency>
+
 
     </dependencies>
 
