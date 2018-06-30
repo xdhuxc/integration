@@ -4,10 +4,13 @@ import com.xdhuxc.util.StringUtil;
 import com.xdhuxc.util.XdhuxcUtil;
 import mesosphere.marathon.client.Marathon;
 import mesosphere.marathon.client.MarathonClient;
+import mesosphere.marathon.client.model.v2.GetAppsResponse;
+import mesosphere.marathon.client.model.v2.VersionedApp;
 import org.apache.commons.lang.StringUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -46,9 +49,13 @@ public class MarathonUtil {
      *
      *
      */
-    public void getAllApps() {
-
-
+    public static void getAllApps() {
+        Marathon marathon = MarathonUtil.createMarathonClient();
+        List<VersionedApp> listApps = marathon.getApps().getApps();
+        for (VersionedApp app : listApps) {
+            System.out.println(app.toString());
+        }
+        
 
     }
 

@@ -9,5 +9,7 @@ package com.xdhuxc.marathon;
 
 public class MarathonMain {
     //https://blog.csdn.net/qq_27232757/article/details/74565095
-
-}
+    public static void main(String[] args) {
+        MarathonUtil.getAllApps();
+    }
+ }
