@@ -35,8 +35,8 @@ public class StringUtil {
      * @return true，如果字符串 s 为 null，或者 s 的长度为 0，或者 s 全为空格。
      */
     public static boolean isBlank(String s) {
-        int sLength = 0;
-        if ( s == null | (sLength = s.length()) == 0 ) {
+        int sLength;
+        if ( null == s || (sLength = s.length()) == 0 ) {
             return true;
         }
         // 字符串 s 中有一个不为空格，则说明 s 不为空。

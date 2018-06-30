@@ -22,7 +22,7 @@ public class XdhuxcUtil {
     public static String getParamFromEnvFirstly(String paramName) {
         Properties props = new Properties();
         // 使用 ClassLoader 加载 properties 配置文件生成对应的输入流
-        InputStream is = MarathonUtil.class.getClassLoader().getResourceAsStream("application.properties");
+        InputStream is = XdhuxcUtil.class.getClassLoader().getResourceAsStream("application.properties");
         try {
             // 使用 properties 对象加载输入流
             props.load(is);

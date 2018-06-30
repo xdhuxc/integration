@@ -4,7 +4,6 @@ import com.xdhuxc.util.StringUtil;
 import com.xdhuxc.util.XdhuxcUtil;
 import mesosphere.marathon.client.Marathon;
 import mesosphere.marathon.client.MarathonClient;
-import mesosphere.marathon.client.model.v2.GetAppsResponse;
 import mesosphere.marathon.client.model.v2.VersionedApp;
 import org.apache.commons.lang.StringUtils;
 
