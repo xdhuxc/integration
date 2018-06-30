@@ -1,6 +1,7 @@
 package com.xdhuxc.marathon;
 
 import com.xdhuxc.util.StringUtil;
+import com.xdhuxc.util.XdhuxcUtil;
 import mesosphere.marathon.client.Marathon;
 import mesosphere.marathon.client.MarathonClient;
 import org.apache.commons.lang.StringUtils;
@@ -23,34 +24,22 @@ public class MarathonUtil {
      * @return
      */
     private static Marathon createMarathonClient() {
-        Properties properties = new Properties();
-        // 使用 ClassLoader 加载 properties 配置文件生成对应的输入流
-        InputStream is = MarathonUtil.class.getClassLoader().getResourceAsStream("application.properties");
-        try {
-            // 使用 properties 对象加载输入流
-            properties.load(is);
-            // 获取配置值
-            String marathonUrl = System.getenv("marathon_url");
-            String s = properties.getProperty("marathon_url");
-            String marathonUsername = properties.getProperty("marathon_username");
-            String marathonPassword = properties.getProperty("marathon_password");
-            String marathonToken = properties.getProperty("marathon_token");
+        // 获取 marathon 配置信息
+        String marathonUrl = XdhuxcUtil.getParamFromEnvFirstly("marathon_url");
+        String marathonUsername = XdhuxcUtil.getParamFromEnvFirstly("marathon_username");
+        String marathonPassword = XdhuxcUtil.getParamFromEnvFirstly("marathon_password");
+        String marathonToken = XdhuxcUtil.getParamFromEnvFirstly("marathon_token");
 
-            // 创建 Marathon 对象
-            if (StringUtil.isNotBlank(marathonUrl)) {
-
-            }
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        // 创建 Marathon 对象，优先使用 token验证，其次使用用户名/密码验证，最后直接裸用
+        if (StringUtil.isNotBlank(marathonUrl) && StringUtil.isNotBlank(marathonToken)) {
+            return MarathonClient.getInstanceWithTokenAuth(marathonUrl, marathonToken);
+        } else if (StringUtil.isNotBlank(marathonUrl) && StringUtil.isNotBlank(marathonUsername) && StringUtil.isNotBlank(marathonPassword)) {
+            return MarathonClient.getInstanceWithBasicAuth(marathonUrl, marathonUsername, marathonPassword);
+        } else if (StringUtil.isNotBlank(marathonUrl)) {
+            return MarathonClient.getInstance(marathonUrl);
+        } else {
+            return null;
         }
-
-
-
-
-
-        return MarathonClient.getInstance(marathonUrl);
     }
 
     /**
